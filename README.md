@@ -1,3 +1,7 @@
+Aqui está a versão atualizada do seu README.md, incluindo as novas etapas para configurar a conexão AWS no Airflow, configurar variáveis no Airflow e adicionar as configurações para o comando `spark-submit`:
+
+---
+
 # ETL S3 with PySpark and Airflow: Passwords Consolidation Project
 
 This project demonstrates an ETL pipeline orchestrated with **Apache Airflow**, utilizing **PySpark** to process password data stored in an **AWS S3** bucket. The pipeline performs data generation, processing, and consolidation tasks, showcasing efficient orchestration and integration with cloud storage.
@@ -83,13 +87,44 @@ pip install -r requirements.txt
 
 ---
 
-### 4. Update Configurations
+## **Configure AWS Connection in Airflow**
+
+1. In the Airflow UI, go to **Admin > Connections**.
+2. Create or edit a connection with the following details:
+   - **Connection Id**: `aws_default` (or a custom name).
+   - **Connection Type**: `Amazon Web Services`.
+   - **AWS Access Key ID**: Enter the **Access Key** in the *Login* field.
+   - **AWS Secret Access Key**: Enter the **Secret Key** in the *Password* field.
+   - **Extra**: Optionally, include the region in JSON format:
+     ```json
+     {
+       "region_name": "us-east-1"
+     }
+     ```
+3. Save the connection.
+
+---
+
+## **Configure Variables in Airflow**
+
+1. In the Airflow UI, go to **Admin > Variables**.
+2. Add or update the following variables:
+   - **Key**: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN` (if using temporary credentials).
+   - **Value**: Enter the corresponding values.
+3. Save the changes.
+
+---
+
+### 4. Update Spark Configuration
 
 - Edit `spark-defaults.conf` to include AWS credentials and endpoints:
   ```
   spark.hadoop.fs.s3a.aws.credentials.provider=com.amazonaws.auth.DefaultAWSCredentialsProviderChain
-  spark.hadoop.fs.s3a.endpoint=s3.us-east-1.amazonaws.com
+  spark.hadoop.fs.s3a.endpoint=s3.amazonaws.com
+  spark.hadoop.fs.s3a.region=us-east-1
   ```
+
+---
 
 ### 5. Execute the Pipeline
 
@@ -108,7 +143,7 @@ pip install -r requirements.txt
 2. **Process Passwords**:
    - Reads the generated data from S3.
    - Applies transformations (e.g., cleaning or validation).
-   - Writes the processed data to `s3://<bucket-name>/processed/`.
+   - Writes the processed data to `s3://<bucket-name>/output/`.
 
 3. **Consolidate Files**:
    - Reads all processed files from S3.
@@ -129,4 +164,4 @@ pip install -r requirements.txt
 
 [ETL S3 PySpark Airflow Repository](https://github.com/Wellington8962/etl-s3-pyspark-airflow)
 
----
+--- 
