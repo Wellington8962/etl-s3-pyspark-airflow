@@ -1,7 +1,3 @@
-Aqui está a versão atualizada do seu README.md, incluindo as novas etapas para configurar a conexão AWS no Airflow, configurar variáveis no Airflow e adicionar as configurações para o comando `spark-submit`:
-
----
-
 # ETL S3 with PySpark and Airflow: Passwords Consolidation Project
 
 This project demonstrates an ETL pipeline orchestrated with **Apache Airflow**, utilizing **PySpark** to process password data stored in an **AWS S3** bucket. The pipeline performs data generation, processing, and consolidation tasks, showcasing efficient orchestration and integration with cloud storage.
