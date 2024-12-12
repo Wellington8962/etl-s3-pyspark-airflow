@@ -19,7 +19,6 @@ python_path = sys.executable
 aws_conn = BaseHook.get_connection('aws_default')
 aws_access_key = aws_conn.login  # Login contém o AWS_ACCESS_KEY_ID
 aws_secret_key = aws_conn.password  # Password contém o AWS_SECRET_ACCESS_KEY
-aws_session_token = Variable.get("AWS_SESSION_TOKEN", default_var="")  # Token da sessão 
 
 # Configuração padrão para as tarefas
 default_args = {
@@ -35,7 +34,6 @@ default_args = {
 spark_submit_base = f"""
 export AWS_ACCESS_KEY_ID={aws_access_key};
 export AWS_SECRET_ACCESS_KEY={aws_secret_key};
-export AWS_SESSION_TOKEN={aws_session_token};
 spark-submit --packages org.apache.hadoop:hadoop-aws:3.3.4,com.amazonaws:aws-java-sdk-bundle:1.12.508 \
 --conf spark.hadoop.fs.s3a.aws.credentials.provider=com.amazonaws.auth.DefaultAWSCredentialsProviderChain \
 --conf spark.hadoop.fs.s3a.endpoint=s3.amazonaws.com \

@@ -44,7 +44,7 @@ if __name__ == "__main__":
     ))
 
     # Caminho do bucket S3 de entrada
-    s3_input_path = "s3a://wb-s3-lab/input/senhas_geradas.json"
+    s3_input_path = "s3a://wb-s3-lab/first_step/generated_passwords.json"
 
     # Salvando o DataFrame no S3 em formato JSON
     senha_gerada_df.write.mode("overwrite").json(s3_input_path)

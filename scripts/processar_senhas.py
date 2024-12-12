@@ -10,8 +10,8 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 # Caminhos do S3
-s3_input_path = "s3a://wb-s3-lab/input/senhas_geradas.json/"
-s3_output_path = "s3a://wb-s3-lab/output/senhas_processadas/"
+s3_input_path = "s3a://wb-s3-lab/first_step/generated_passwords.json"
+s3_output_path = "s3a://wb-s3-lab/second_step/processed_passwords/"
 
 # Função para contar caracteres específicos (maiúsculas, números, símbolos)
 def contar_caracteres(senha):
